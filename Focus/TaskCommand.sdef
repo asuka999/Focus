@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE dictionary SYSTEM "file://localhost/System/Library/DTDs/sdef.dtd">
+
+<dictionary title="Task Terminology">
+    
+    <suite name="Standard Suite" code="????" description="Common classes and commands for all applications.">
+        <command name="quit" code="aevtquit" description="Quit the application.">
+            <cocoa class="NSQuitCommand"/>
+        </command>
+
+        <class name="application" code="capp" description="The application's top-level scripting object.">
+            <cocoa class="NSApplication"/>
+            <property name="name" code="pnam" type="text" access="r" description="The name of the application."/>
+            <property name="frontmost" code="pisf" type="boolean" access="r" description="Is this the active application?">
+                <cocoa key="isActive"/>
+            </property>
+            <property name="version" code="vers" type="text" access="r" description="The version number of the application."/>
+           
+            <responds-to command="quit">
+                <cocoa method="handleQuitScriptCommand:"/>
+            </responds-to>
+        </class>
+    </suite>
+
+    <suite name="Task Suite" code="taSk" description="Task Scripts">
+        <command name="stop" code="taSkstop" description="stop a task">
+            <cocoa class="Focus.Stop"/>
+        </command>
+        <command name="focus" code="taSktext" description="focus a task for some minutes">
+            <cocoa class="Focus.Focus"/>
+            <direct-parameter description="One task" type="text">
+                <cocoa key="task"/>
+            </direct-parameter>
+            <parameter name="for" code="fOr " type="number" optional="yes" description="for time">
+                <cocoa key="time"/>
+            </parameter>
+        </command>
+        <command name="toggle" code="taSktogg" description="toggle">
+            <cocoa class="Focus.Toggle"/>
+        </command>
+        <class name="application" code="capp" description="An application's top level scripting object.">
+            <cocoa class="NSApplication"/>
+        </class>
+    </suite>
+</dictionary>
